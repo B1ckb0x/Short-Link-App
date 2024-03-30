@@ -1,12 +1,12 @@
 from django.db import models
-from django.utils import slugify
+from django.utils.text import slugify
+
 
 # Create your models here.
-
 class Link(models.Model):
-    name = models.CharField(max_length=50, unqiue=True)
-    url = models.URLField()
-    slug = models.SlugField()
+    name = models.CharField(max_length=50, unique=True)
+    url = models.URLField(max_length=200)
+    slug = models.SlugField(unique=True, blank=True)
     clicks = models.IntegerField(default=0)
 
     def __str__(self):
